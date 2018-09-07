@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Product Design | Portfolio page of Dani Toos">
+    <meta name="author" content="Dani Toos">
+    <title>Dani Toos - Portfolio</title>
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Dani Toos - Portfolio">
+    <meta itemprop="description" content="Product Design | Portfolio page of Dani Toos">
+    <meta itemprop="image" content="">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="Dani Toos - Portfolio">
+    <meta name="twitter:title" content="Dani Toos - Portfolio">
+    <meta name="twitter:description" content="Product Design | Portfolio page of Dani Toos">
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image:src" content="">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Dani Toos - Portfolio" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://danitoos.com" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="Product Design | Portfolio page of Dani Toos." />
+    <meta property="og:site_name" content="DaniToos" />
+    <meta property="article:published_time" content="2018-09-15T12:59:00+01:00" />
+    <meta property="article:modified_time" content="2018-09-15T12:08:47+01:00" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-precomposed.png">
+    <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+
+  </head>
+  <body>
+      <header class="">
+          <div class="container">
+              <nav class="navbar navbar-expand-lg navbar-light">            
+              <a class="navbar-brand" href="#">Dani Toos - logo</a>
+              <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarToogle" aria-controls="navbarToogle" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>          
+              <div class="collapse navbar-collapse" id="navbarToogle">
+                  <ul class=" navbar-nav ml-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="#home">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/works.html">Work</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#contact">Contact</a>
+                      </li>
+                  </ul>
+              </div>
+              </nav>
+          </div>
+      </header>
+      <section id="firebase">
+        <div id="load">
+
+        </div>
+      </section>
+      <section id="home">
+          <div class="container-fluid">
+              <div class="row">
+                <div id="renderCarousel">
+                  </div>
+                
+              </div>
+          </div>
+  
+      </section>
+      <section id="work">
+        <!-- My work section rendered by JS -->
+      </section>
+      <section id="contact">
+          <div class="container">
+              <div class="row">
+                  <div class="col-12 col-md-6">
+                      Photo and about me
+                      Download CV in pdf
+                      LinkedIn
+                      Dribble?
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <form>
+                          <div class="form-group">
+                              <label for="nameInput">Your name</label>
+                              <input type="text" class="form-control" id="nameInput" aria-describedby="nameHelp" placeholder="">
+                          </div>
+                          <div class="form-group">
+                              <label for="emailInput">... email</label>
+                              <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="">
+                              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                          </div>
+                          <div class="form-group">
+                              <label for="messageInput">... and message</label>
+                              <textarea rows="4" class="form-control" id="messageInput" aria-describedby="messageHelp" placeholder=""></textarea>
+                              <small id="messageHelp" class="form-text text-muted">Please be concise as much as possible.</small>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Send message</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <footer>
+          <div class="container">
+              <div class="col-6">
+                  
+              </div>
+              <div class="col-6">
+                  Copyright @ 2018 Dani Toos
+              </div>
+          </div>
+      </footer>
+
+    <!-- Firebase App  -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-storage.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <script src="js/index.js"></script>
+  </body>
+</html>
