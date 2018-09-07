@@ -66,9 +66,9 @@ function renderProjects (projects) {
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
-                            <h5>${project.title}</h5>
-                            <h6>${project.category}</h6>
-                            <p>${project.description}</p>
+                            <h5 class="project-header">${project.title}</h5>
+                            <h6 class="project-category">${project.category}</h6>
+                            <p class="p-text">${project.description}</p>
                             <p><a href="/works.html?project=${project.title}">Read more</a></p>
                         </div>
                     </div>`

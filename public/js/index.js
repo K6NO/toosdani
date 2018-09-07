@@ -70,29 +70,18 @@ function renderCarousel (projects) {
     return new Promise(function(resolve, reject) {
         projects.then(function(data) {
             let htmlObject = `
-            <div id="carouselId" class="carousel slide carousel-fade" data-ride="carousel">
-                <div class="carousel-inner">
                     ${data.map(function(item, index) {
                     return `
                     <div class="carousel-item ${index === 0 ? 'active' : ''}">
                         <div class="overlay"></div>
                         <img class="d-block w-100" src="${item.images[0]}" alt="${item.title}" />
-                        <div class="carousel-caption d-none d-md-block">
-                            <h2>${item.title}</h2>
+                        <div class="carousel-caption d-block">
+                            <h2 class="carousel-title">${item.title}</h2>
                         </div>
                     </div>
                     `
                     }).join('')}
-                </div>
-                <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>`; 
+                `; 
             resolve(htmlObject);
         }).catch(function(e) {
             console.log('ouch renderCarousel');
@@ -108,13 +97,13 @@ function renderTopProjects (projects) {
             <div class="container text-center">
                 <div class="row">
                 <div class="col-12">
-                    <h1>My Work</h1>
+                    <h1 class="work-header">My Work</h1>
                 </div>
                 ${data.map(function(project, index) {
                     return `<div class="col-12 col-md-4">
                         <img class="img-fluid" src="${project.images[0]}" />
-                        <h5>${project.title}</h5>
-                            <p>${project.category}</p>
+                        <h5 class="project-header">${project.title}</h5>
+                            <p class="project-category">${project.category}</p>
                     </div>`
                 }).join('')}
                 </div>
@@ -129,10 +118,6 @@ function renderTopProjects (projects) {
 
 document.addEventListener('DOMContentLoaded', function() {
     try {
-      let app = firebase.app();
-      let features = ['firestore', 'storage'].filter(feature => typeof app[feature] === 'function');
-      document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-
       const database = firebase.firestore();
       const firestoreSettings = {timestampsInSnapshots : true};
       database.settings(firestoreSettings);
@@ -152,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(e);
       });
       ;
-    //   const projects = getProjectsByCategory(collection, "Product Design");
     
     // render My Work section
       renderTopProjects(topProjects).then(
