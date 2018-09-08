@@ -29,8 +29,11 @@ h5 {
     letter-spacing: 2px;
 }
 label {
-    font-size: 14px;
-    font-size: 1.4rem;
+    font-size: 12px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #5b5b5b;
+    letter-spacing: 1px;
 }
 .navbar {
     height: 60px;
@@ -41,11 +44,25 @@ label {
 .navbar-light .navbar-toggler {
     border: 1px solid transparent;
     text-align: center;
-    padding: 30px 10px;
+    padding: 20px 10px;
     font-weight: 700;
     color: #484848;
     font-size: 13px;
     text-transform: uppercase;
+}
+.navbar-light .navbar-toggler:focus {
+    border: none;
+    outline: none;
+}
+.collapse.show {
+    background: linear-gradient(to bottom, #ffffff, rgba(255,255,255, .5));
+    z-index: 100;
+    margin: 0 -10%;
+}
+.collapsing {
+    background: linear-gradient(to bottom, #ffffff, rgba(255,255,255, .5));
+    z-index: 100;
+    margin: 0 -10%;
 }
 .navbar-light .navbar-nav .nav-link  {
     color: #484848;
@@ -131,6 +148,18 @@ label {
     letter-spacing: 1.5px;
     padding: 1rem 0;
 }
+.read-more a {
+    background: transparent;
+    color: #5b5b5b;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+.read-more a:hover {
+    background: #9eaeae;
+    text-decoration: none;
+}
 .submit-button {
     background: transparent;
     border: 1px solid #5b5b5b;
@@ -167,10 +196,21 @@ label {
     box-shadow: none;
 }
 
+.footer-image {
+    max-width: 30px;
+}
+
 @media only screen and (min-width: 576px) {
     .carousel-title {
         font-size: 1.8rem;
         font-weight: 200;
         letter-spacing: 4.5px;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 2rem;
+        padding-left: .5rem;
     }
 }

@@ -69,7 +69,7 @@ function renderProjects (projects) {
                             <h5 class="project-header">${project.title}</h5>
                             <h6 class="project-category">${project.category}</h6>
                             <p class="p-text">${project.description}</p>
-                            <p><a href="/works.html?project=${project.title}">Read more</a></p>
+                            <p class="read-more mb-5"><a href="work.html?project=${project.title}">Read more</a></p>
                         </div>
                     </div>`
                 }).join('')}`;

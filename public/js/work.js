@@ -17,6 +17,7 @@ function getProject (collection, title) {
     return new Promise(function(resolve, reject) {
         collection
             .where("title", "==", capitalizedTitle)
+            .limit(1)
             .get()
             .then(function(items) {
                 let data = [];
@@ -39,13 +40,13 @@ function renderProject (projects) {
                 <div class="row">
                     <div class="col-12 col-md-8 order-2 order-md-1">
                         ${project.images.map(function(image) {
-                            return `<img class="img-fluid" src="${image}" alt="${project.title}" />`
+                            return `<img class="img-fluid mb-4" src="${image}" alt="${project.title}" />`
                         }).join('')}
                     </div>
                     <div class="col-12 col-md-4 order-1 order-md-2">
-                        <h5>${project.title}</h5>
-                        <h6>${project.category}</h6>
-                        <p>${project.description}</p>
+                        <h5 class="project-header">${project.title}</h5>
+                        <h6 class="project-category">${project.category}</h6>
+                        <p class="p-text">${project.description}</p>
                     </div>
                 </div>`
                 ).join('')}`;
