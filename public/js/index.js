@@ -149,6 +149,51 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('ouch in topProjects rendering');
         console.log(e);
       });
+    // render form 
+
+    // handle contact form
+    const form = document.querySelector('#contactForm');
+    const name = form.elements['name'];
+    const senderEmail = form.elements['email'];
+    const message = form.elements['message'];
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log(
+            name.value, senderEmail.value, message.value
+        );
+        if(!name.value) {
+            alert('Please add your name.')
+        } else if (!senderEmail.value) {
+            alert('Please add your email.')
+        } else if (!message.value) {
+            alert('Please write a message.')
+        } else {
+            console.log(
+                name, senderEmail, message
+            );
+            $.ajax({
+                url: ' https://us-central1-toosdani.cloudfunctions.net/sendMail',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    "name" : name.value,
+                    "email" : senderEmail.value,
+                    "message" : message.value,
+                },
+                success: function(response) {
+                    if(!response.error) {
+                        console.log(response.message);
+                    } else {
+                        console.log(response.error);
+                    }
+            }})
+            .fail(function(data) {
+                alert(data);
+            });
+        }
+        
+  
+    });
     } catch (e) {
       console.error(e);
       document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';

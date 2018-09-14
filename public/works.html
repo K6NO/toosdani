@@ -38,13 +38,20 @@
             <div class="collapse navbar-collapse" id="navbarToogle">
                 <ul class=" navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/#home">Home</a>
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="/works.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Works
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/works.html?category=product">Product Design</a>
+                        <a class="dropdown-item" href="/works.html?category=form">Form Study</a>
+                        <a class="dropdown-item" href="/works.html?category=graphic">Graphic Design</a>
+                      </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/works.html">Work</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#contact">Contact</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -53,21 +60,6 @@
     </header>
     <section>
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-3 offset-md-9 col-lg-2 offset-lg-10">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Search by category
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="categoryDropdown">
-                                <button class="dropdown-item" type="button">All</button>
-                                <button class="dropdown-item" type="button">Product Design</button>
-                                <button class="dropdown-item" type="button">Form Study</button>
-                                <button class="dropdown-item" type="button">Something else here</button>
-                            </div>
-                        </div>
-                </div>
-            </div>
             <div id="works"></div>
         </div>
     </section>

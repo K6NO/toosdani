@@ -8,10 +8,6 @@ var config = {
   };
 firebase.initializeApp(config);
 
-function writeProjects (project, collection) {
-    return collection.add(project);
-}
-
 function getProjects (collection) {
     return new Promise(function(resolve, reject) {
         collection
@@ -87,26 +83,38 @@ document.addEventListener('DOMContentLoaded', function() {
       const firestoreSettings = {timestampsInSnapshots : true};
       database.settings(firestoreSettings);
       const collection = database.collection('projects');
-
+      const queryString = location.search.split('=')[1];
+      const categoryMap = {
+          'product' : 'Product Design',
+          'form' : 'Form Study',
+          'graphic' : 'Graphic Design'
+      }
+      const category = categoryMap[queryString];
+      console.log({category});
       // event listeners
-      const categoryButtons = document.getElementsByClassName('dropdown-item');
-      [].forEach.call(categoryButtons, function (item) {
-          item.addEventListener("click", function () {
-              const category = item.textContent;
-              const projects = category === 'All' ? getProjects(collection) : getProjectsByCategory(collection, category);
-              const htmlObject = renderProjects(projects);
-              htmlObject.then(function(data) {
-                document.getElementById('works').innerHTML = data;
-              });
+    //   const categoryButtons = document.getElementsByClassName('dropdown-item');
+    //   [].forEach.call(categoryButtons, function (item) {
+    //       item.addEventListener("click", function () {
+    //           const category = item.textContent;
+    //           const projects = category === 'All' ? getProjects(collection) : getProjectsByCategory(collection, category);
+    //           const htmlObject = renderProjects(projects);
+    //           htmlObject.then(function(data) {
+    //             document.getElementById('works').innerHTML = data;
+    //           });
               
-          });
-      })
-      const projects = getProjects(collection);
+    //       });
+    //   });
+      const projects = getProjectsByCategory(collection, category);
       let htmlObject;
       renderProjects(projects).then(function(data) {
-          htmlObject = data;
-          document.getElementById('works').innerHTML = htmlObject;
+        htmlObject = data;
+        document.getElementById('works').innerHTML = htmlObject;
+        
+        $('.carousel').carousel({
+            ride: true,
+        });
       });
+      
     } catch (e) {
       console.error(e);
     }
