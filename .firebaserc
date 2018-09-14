@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "toosdani"
+    "default": "toosdani1",
+    "prod": "toosdani1"
   }
 }

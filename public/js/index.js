@@ -1,17 +1,12 @@
-var config = {
-    apiKey: "AIzaSyCMfO7V9ylKXpZnHv3JJxvRAFMBQFfmxaI",
-    authDomain: "toosdani.firebaseapp.com",
-    databaseURL: "https://toosdani.firebaseio.com",
-    projectId: "toosdani",
-    storageBucket: "toosdani.appspot.com",
-    messagingSenderId: "726538280366"
-  };
+const config = {
+    apiKey: "AIzaSyCINgziSR2GUof4fujxuxVIMe2Iib2fdnw",
+    authDomain: "toosdani1.firebaseapp.com",
+    databaseURL: "https://toosdani1.firebaseio.com",
+    projectId: "toosdani1",
+    storageBucket: "toosdani1.appspot.com",
+    messagingSenderId: "1001590064504"
+};
 firebase.initializeApp(config);
-
-
-function writeProjects (project, collection) {
-    return collection.add(project);
-}
 
 function getProjects (collection) {
     return new Promise(function(resolve, reject) {
@@ -118,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const name = form.elements['name'];
     const senderEmail = form.elements['email'];
     const message = form.elements['message'];
+    form.elements['name'].value = '';
+    form.elements['email'].value = '';
+    form.elements['message'].value = '';
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         if(!name.value) {

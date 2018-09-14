@@ -1,11 +1,11 @@
 var config = {
-    apiKey: "AIzaSyCMfO7V9ylKXpZnHv3JJxvRAFMBQFfmxaI",
-    authDomain: "toosdani.firebaseapp.com",
-    databaseURL: "https://toosdani.firebaseio.com",
-    projectId: "toosdani",
-    storageBucket: "toosdani.appspot.com",
-    messagingSenderId: "726538280366"
-  };
+    apiKey: "AIzaSyCINgziSR2GUof4fujxuxVIMe2Iib2fdnw",
+    authDomain: "toosdani1.firebaseapp.com",
+    databaseURL: "https://toosdani1.firebaseio.com",
+    projectId: "toosdani1",
+    storageBucket: "toosdani1.appspot.com",
+    messagingSenderId: "1001590064504"
+};
 firebase.initializeApp(config);
 
 function getProjects (collection) {
