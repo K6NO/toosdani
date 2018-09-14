@@ -1,47 +1,51 @@
-const express = require('express');
+'use strict';
+
 const cors = require('cors')({origin: true});
 const nodemailer = require('nodemailer');
 const functions = require('firebase-functions');
-
-
-// const transporter = nodemailer.createTransport('smtps://username@gmail.com:password@smtp.gmail.com');
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'tamas.kenessey@gmail.com',
+        pass: 'QwertPse5',
+    },
+});
 
 exports.sendMail = functions.https.onRequest((req, res) => {
-    // if (req.method === `OPTIONS`) {
-    //     res.set('Access-Control-Allow-Origin', "http://localhost:5000")
-    //        .set('Access-Control-Allow-Methods', 'GET, POST')
-    //        .status(200);
-    //        return;
-    // }
     if(req.method === 'PUT') {
         return res.status(403).send('Forbidden');
     }
+    const name = req.body.name;
+    const email = req.body.email;
+    const message = req.body.message;
+    
     return cors(req, res, () => {
-        res.status(200).send('Yay, it works');
+        sendEmail(name, email, message);
+        return res.status(200).send({"message" : "Your message is sent."});
     });
 });
-    // console.log('yay');
-    // return res.send('yay');
-    // const name = req.body.name;
-    // const senderEmail = req.body.email;
-    // const message = req.body.message;
-    // const mailOptions= {
-    //     from: `"${name}" <${senderEmail}>`,
-    //     to: 'tamas.kenessey@gmail.com',
-    //     text: message,
-    // }
-    // transporter.sendMail(mailOptions, function(err, res) {
-    //     if (err) {
-    //         res.status(500).send('Mail not sent');
-    //     } else {
-    //         res.status(200).send('Mail sent');
-    //     }
-    // });
-// });
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+exports.sendMailNew = functions.https.onRequest((req, res) => {
+    if(req.method === 'PUT') {
+        return res.status(403).send('Forbidden');
+    }
+    const name = req.body.name;
+    const email = req.body.email;
+    const message = req.body.message;
+    
+    return cors(req, res, () => {
+        sendEmail(name, email, message);
+        return res.status(200).send({"message" : "Your message is sent."});
+    });
+});
+
+async function sendEmail(name, email, message) {
+    const mailOptions= {
+        to: 'tamas.kenessey@gmail.com',
+        text: `${name} from ${email} has sent a message to you: 
+        ${message}`,
+        subject: 'New message from your DanielToos.com',
+    }
+    await transporter.sendMail(mailOptions);
+    return console.log('Message sent to tamas.kenessey from ' + email);
+}

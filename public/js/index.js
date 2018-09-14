@@ -96,9 +96,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const firestoreSettings = {timestampsInSnapshots : true};
       database.settings(firestoreSettings);
       const collection = database.collection('projects');
-      let carouselHTML, topProjectsHTML;
+      
       
       // render carousel
+      let carouselHTML;
       const topProjects = getTopProjects(collection);
       renderCarousel(topProjects).then(
           function(data) {
@@ -112,8 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       ;
     
-    // render form 
-
     // handle contact form
     const form = document.querySelector('#contactForm');
     const name = form.elements['name'];
@@ -121,9 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const message = form.elements['message'];
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        console.log(
-            name.value, senderEmail.value, message.value
-        );
         if(!name.value) {
             alert('Please add your name.')
         } else if (!senderEmail.value) {
@@ -131,9 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (!message.value) {
             alert('Please write a message.')
         } else {
-            console.log(
-                name, senderEmail, message
-            );
             $.ajax({
                 url: ' https://us-central1-toosdani.cloudfunctions.net/sendMail',
                 type: 'POST',
@@ -142,20 +135,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     "name" : name.value,
                     "email" : senderEmail.value,
                     "message" : message.value,
-                },
-                success: function(response) {
-                    if(!response.error) {
-                        console.log(response.message);
-                    } else {
-                        console.log(response.error);
-                    }
-            }})
-            .fail(function(data) {
-                alert(data);
+                }
+                })
+            .done(function(data) {
+                alert(data.message);
+                console.log(data);
+            })
+            .fail(function(error) {
+                alert('Error. Message not sent.');
+                console.log(error);
             });
         }
-        
-  
     });
     } catch (e) {
       console.error(e);
