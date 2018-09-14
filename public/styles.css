@@ -88,6 +88,15 @@ label {
     font-weight: 200;
     letter-spacing: 10.5px;
 }
+.carousel-title > a {
+    color: #9d9d9d;
+    text-decoration: none;
+}
+
+.carousel-title > a:hover {
+    color: #ededed;
+    text-decoration: none;
+}
 
 .overlay {
     position: absolute;

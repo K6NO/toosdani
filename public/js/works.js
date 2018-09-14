@@ -55,17 +55,18 @@ function renderProjects (projects) {
                                 <div class="carousel-inner">
                                     ${project.images.map(function(image, index) {
                                         return `<div class="carousel-item ${index === 0 ? "active" : ""}">
+                                            <a href="work.html?project=${project.title}">
                                             <img class="d-block w-100" src="${image}" alt="${project.title}">
+                                            </a>
                                         </div>`
                                     }).join('')}
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
-                            <h5 class="project-header">${project.title}</h5>
+                            <a href="work.html?project=${project.title}"><h5 class="project-header">${project.title}</h5></a>
                             <h6 class="project-category">${project.category}</h6>
                             <p class="p-text">${project.description}</p>
-                            <p class="read-more mb-5"><a href="work.html?project=${project.title}">Read more</a></p>
                         </div>
                     </div>`
                 }).join('')}`;
