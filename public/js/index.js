@@ -30,10 +30,10 @@ function getProjects (collection) {
     });
 }
 
-function getTopProjects (collection, limit) {
+function getTopProjects (collection) {
     return new Promise(function(resolve, reject) {
         collection
-            .limit(limit)
+            .where("main", "==", true)
             .get()
             .then(function(items) {
                 let data = [];
@@ -90,32 +90,6 @@ function renderCarousel (projects) {
     })
 }
 
-function renderTopProjects (projects) {
-    return new Promise (function(resolve, reject) {
-        projects.then(function(data) {
-            let htmlObject = `
-            <div class="container text-center">
-                <div class="row">
-                <div class="col-12">
-                    <h1 class="work-header">My Work</h1>
-                </div>
-                ${data.map(function(project, index) {
-                    return `<div class="col-12 col-md-4">
-                        <img class="img-fluid" src="${project.images[0]}" />
-                        <h5 class="project-header">${project.title}</h5>
-                            <p class="project-category">${project.category}</p>
-                    </div>`
-                }).join('')}
-                </div>
-            </div>`;
-            resolve(htmlObject)
-        }).catch(function(e) {
-            console.log('ouch renderTopProjects');
-            reject(e);
-        });
-    });
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     try {
       const database = firebase.firestore();
@@ -125,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let carouselHTML, topProjectsHTML;
       
       // render carousel
-      const topProjects = getTopProjects(collection, 3);
+      const topProjects = getTopProjects(collection);
       renderCarousel(topProjects).then(
           function(data) {
               carouselHTML = data;
@@ -138,17 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       ;
     
-    // render My Work section
-      renderTopProjects(topProjects).then(
-          function(data) {
-            topProjectsHTML = data;
-            document.getElementById('work').innerHTML = topProjectsHTML;
-          }
-      )
-      .catch(function(e) {
-        console.log('ouch in topProjects rendering');
-        console.log(e);
-      });
     // render form 
 
     // handle contact form

@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const database = firebase.firestore();
       const firestoreSettings = {timestampsInSnapshots : true};
       database.settings(firestoreSettings);
+      
+      // get category from url parameter
       const collection = database.collection('projects');
       const queryString = location.search.split('=')[1];
       const categoryMap = {
@@ -90,20 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
           'graphic' : 'Graphic Design'
       }
       const category = categoryMap[queryString];
-      console.log({category});
-      // event listeners
-    //   const categoryButtons = document.getElementsByClassName('dropdown-item');
-    //   [].forEach.call(categoryButtons, function (item) {
-    //       item.addEventListener("click", function () {
-    //           const category = item.textContent;
-    //           const projects = category === 'All' ? getProjects(collection) : getProjectsByCategory(collection, category);
-    //           const htmlObject = renderProjects(projects);
-    //           htmlObject.then(function(data) {
-    //             document.getElementById('works').innerHTML = data;
-    //           });
-              
-    //       });
-    //   });
+      
       const projects = getProjectsByCategory(collection, category);
       let htmlObject;
       renderProjects(projects).then(function(data) {
