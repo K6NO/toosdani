@@ -95,16 +95,32 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       const category = categoryMap[queryString];
       
-      const projects = getProjectsByCategory(collection, category);
+      let projects = getProjectsByCategory(collection, category);
       let htmlObject;
       renderProjects(projects).then(function(data) {
         htmlObject = data;
         document.getElementById('works').innerHTML = htmlObject;
-        
         $('.carousel').carousel({
             ride: true,
+            interval: 10000,
+        });
+
+        // event listener of the category sub-heading clicks
+        document.querySelector('.project-category').addEventListener('click', (e) => {
+            let newCategory = e.target.textContent;
+            projects = getProjectsByCategory(collection, newCategory);
+            renderProjects(projects).then(function(data) {
+                htmlObject = data;
+                document.getElementById('works').innerHTML = htmlObject;
+                $('.carousel').carousel({
+                    ride: true,
+                    interval: 10000,
+                });
+            });
         });
       });
+
+      
       
     } catch (e) {
       console.error(e);

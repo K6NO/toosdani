@@ -71,7 +71,7 @@ function renderCarousel (projects) {
                         <div class="overlay"></div>
                         <img class="d-block w-100" src="${item.images[0]}" alt="${item.title}" />
                         <div class="carousel-caption d-block">
-                            <h2 class="carousel-title"><a href="/work.html?project=${item.title}">${item.title}</a></h2>
+                            <h2 class="carousel-title"><a class="${item.dark ? 'title-dark' : 'title-light'}" href="/work.html?project=${item.title}">${item.title}</a></h2>
                         </div>
                     </div>
                     `

@@ -85,17 +85,24 @@ label {
 }
 .carousel-title {
     font-size: 2.4rem;
-    font-weight: 200;
+    font-weight: 400;
+    color: #ededed;
     letter-spacing: 10.5px;
 }
 .carousel-title > a {
-    color: #9d9d9d;
     text-decoration: none;
 }
 
 .carousel-title > a:hover {
-    color: #ededed;
+    color: inherit;
     text-decoration: none;
+}
+
+.title-dark {
+    color: #333;
+}
+.title-light {
+    color: #ededed;
 }
 
 .overlay {
