@@ -43,7 +43,12 @@ function renderProject (projects) {
                             return `<img class="img-fluid mb-4" src="${image}" alt="${project.title}" />`
                         }).join('')}
                     </div>
-                    <div class="col-12 col-md-4 order-1 order-md-2">
+                    <div class="embed-container col-12 col-md-8 order-3 order-md-2">
+                        ${project.videos ? project.videos.map(function (video) {
+                            return `<iframe src='${video}' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>`
+                        }).join('') : ''}
+                    </div>
+                    <div class="col-12 col-md-4 order-1 order-md-3">
                         <h5 class="project-header">${project.title}</h5>
                         <h6 class="project-category">${project.category}</h6>
                         <p class="p-text">${project.description}</p>

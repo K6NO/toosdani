@@ -11,7 +11,8 @@ firebase.initializeApp(config);
 function getProjects (collection) {
     return new Promise(function(resolve, reject) {
         collection
-            .get()
+        orderBy("rank")    
+        .get()
             .then(function(items) {
                 let data = [];
                 items.forEach(function(item) {

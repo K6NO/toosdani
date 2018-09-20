@@ -262,10 +262,27 @@ label {
     border: 1px solid transparent;
 }
 
-
 .footer-image {
     max-width: 30px;
 }
+
+/* Work.html */
+.embed-container {
+    position:relative;
+    padding-bottom:38%;
+    height:0;
+    overflow:hidden; 
+}
+    
+    .embed-container iframe, .embed-container object, .embed-container embed {
+    position:absolute;
+    top:0;
+    left:15px;
+    width:95%;
+    height:100%; }
+
+/* MEDIA QUERIES*/
+
 
 @media only screen and (min-width: 576px) {
     .carousel-title {
@@ -279,5 +296,15 @@ label {
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 2rem;
         padding-left: .5rem;
+    }
+}
+@media (max-width: 768px) {
+    .embed-container {
+        position:relative;
+        padding-bottom:43%;
+        padding-top:30px;
+        margin-left: -15px;
+        height:0;
+        overflow:hidden; 
     }
 }
