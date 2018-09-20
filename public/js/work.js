@@ -8,17 +8,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
-function writeProjects (project, collection) {
-    return collection.add(project);
-}
-
-function getProject (collection, title) {
-    const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
+function getProject (collection, id) {
     return new Promise(function(resolve, reject) {
         collection
-            .where("title", "==", capitalizedTitle)
+            .where(firebase.firestore.FieldPath.documentId(), "==", id)
             .limit(1)
-            .get()
+            .get("id")
             .then(function(items) {
                 let data = [];
                 items.forEach(function(item) {
@@ -43,12 +38,12 @@ function renderProject (projects) {
                             return `<img class="img-fluid mb-4" src="${image}" alt="${project.title}" />`
                         }).join('')}
                     </div>
-                    <div class="embed-container col-12 col-md-8 order-3 order-md-2">
+                    <div class="embed-container col-12 col-md-8 order-3 order-md-3">
                         ${project.videos ? project.videos.map(function (video) {
                             return `<iframe src='${video}' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>`
                         }).join('') : ''}
                     </div>
-                    <div class="col-12 col-md-4 order-1 order-md-3">
+                    <div class="col-12 col-md-4 order-1 order-md-2">
                         <h5 class="project-header">${project.title}</h5>
                         <h6 class="project-category">${project.category}</h6>
                         <p class="p-text">${project.description}</p>
@@ -73,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const collection = database.collection('projects');
 
       const queryParameter = window.location.search.split('=')[1];
+      console.log(queryParameter);
       const project = getProject(collection, queryParameter);
       let htmlObject;
       renderProject(project).then(function(data) {

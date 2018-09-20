@@ -222,7 +222,7 @@ label {
 .dropdown-menu {
     width: 150px;
     text-align: left;
-    background: linear-gradient(to bottom, #fff 50%, transparent);
+    background: #fff;
     border: 1px solid transparent;
 }
 .dropdown-toggle {
@@ -294,7 +294,6 @@ label {
 @media only screen and (min-width: 576px) {
     .carousel-title {
         font-size: 2.4rem;
-        font-weight: 200;
         letter-spacing: 10.5px;
     }
 }
@@ -303,6 +302,9 @@ label {
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 2rem;
         padding-left: .5rem;
+    }
+    .dropdown-toggle {
+        padding-top: .4rem;
     }
 }
 @media (max-width: 768px) {
