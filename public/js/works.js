@@ -8,34 +8,14 @@ var config = {
 };
 firebase.initializeApp(config);
 
-function getProjects (collection) {
-    return new Promise(function(resolve, reject) {
-        collection
-        orderBy("rank")    
-        .get()
-            .then(function(items) {
-                let data = [];
-                items.forEach(function(item) {
-                    data.push(item.data());
-            });
-            resolve(data);
-        })
-        .catch(function (e) {
-            reject(e);
-        });
-    });
-}
-
 function getProjectsByCategory (collection, category) {
     return new Promise(function(resolve, reject) {
         collection
         .where("category", "==", category)
         .get("id")
         .then(function(items) {
-            console.log(items);
             let data = [];
             items.forEach(function(item) {
-                console.log(item.id);
                 let project = item.data();
                 project['id'] = item.id;
                 data.push(project);
@@ -51,23 +31,31 @@ function getProjectsByCategory (collection, category) {
 function renderProjects (projects) {
     return new Promise(function(resolve, reject) {
         projects.then(function(data) {
-            console.log(data);
             let htmlObject = 
             `${data.map(function (project, index)  {
                 return `
                     <div class="row">
                         <div class="col-12 col-md-8">
-                            <div id="carousel${index}Id" class="carousel slide" data-ride="carousel">
+                        ${!project.single ? (
+                            `<div id="carousel${index}Id" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     ${project.images.map(function(image, index) {
                                         return `<div class="carousel-item ${index === 0 ? "active" : ""}">
                                             <a href="work.html?project=${project.id}">
-                                            <img class="d-block w-100" src="${image}" alt="${project.title}">
+                                            <img class="d-block w-100" src="${image}" alt="${project.title}" />
                                             </a>
                                         </div>`
                                     }).join('')}
                                 </div>
-                            </div>
+                            </div>`
+                        )
+                    : (
+                        `<div class="carousel">
+                            <a href="work.html?project=${project.id}">
+                                <img class="d-block w-100" src="${project.images[0]}" alt="${project.title}" />
+                            </a>
+                        </div>`
+                    )}
                         </div>
                         <div class="col-12 col-md-4">
                             <a href="work.html?project=${project.id}"><h5 class="project-header">${project.title}</h5></a>
