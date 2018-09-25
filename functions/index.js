@@ -32,8 +32,8 @@ async function sendEmail(name, email, message) {
         to: 'nyerckoma@gmail.com',
         text: `${name} from ${email} has sent a message to you: 
         ${message}`,
-        subject: 'New message from your DanielToos.com',
+        subject: 'New message from DanielToos.com',
     }
     await transporter.sendMail(mailOptions);
-    return console.log('Message sent to tamas.kenessey from ' + email);
+    return console.log('Message sent from ' + email);
 }

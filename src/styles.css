@@ -94,11 +94,11 @@ label {
     margin-left: -200% !important;
 }
 .move-in {
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    -ms-transition: 1s;
-    -o-transition: 1s;
-    transition: 1s;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
     margin-left: 0 !important;
 }
 

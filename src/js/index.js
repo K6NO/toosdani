@@ -10,7 +10,9 @@ if(window.location.pathname.indexOf('works.html') !== -1 ) {
     // show works page
     worksLoaded();
 } else if (window.location.pathname.indexOf('work.html') !== -1 ) {
+    // show individual work page
     workLoaded();
 } else {
+    // show index page
     indexLoaded();
 }
