@@ -1,23 +1,5 @@
-import firebase from 'firebase';
-
-function getProject (collection, id) {
-    return new Promise(function(resolve, reject) {
-        collection
-            .where(firebase.firestore.FieldPath.documentId(), "==", id)
-            .limit(1)
-            .get()
-            .then(function(items) {
-                let data = [];
-                items.forEach(function(item) {
-                    data.push(item.data());
-            });
-            resolve(data);
-        })
-        .catch(function (e) {
-            reject(e);
-        });
-    });
-}
+import firebase from 'firebase/app';
+import { getProject } from './database.js';
 
 function renderProject (projects) {
     return new Promise(function(resolve, reject) {

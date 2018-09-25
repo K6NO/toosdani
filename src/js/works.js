@@ -1,30 +1,5 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { getProjectsByCategory } from './database.js';
-
-// function getProjectsByCategory (collection, category) {
-//     return new Promise(function(resolve, reject) {
-//         collection
-//         .where("category", "==", category)
-//         .get()
-//         .then(function(items) {
-//             let data = [];
-//             items.forEach(function(item) {
-//                 let project = item.data();
-//                 project['id'] = item.id;
-//                 data.push(project);
-//             });
-//             data.sort(function(a,b) {
-//                 if (a.rank > b.rank) return 1;
-//                 if(b.rank > a.rank) return -1;
-//                 else return 0;
-//             });
-//             resolve(data);
-//         })
-//         .catch(function (e) {
-//             reject(e);
-//         });
-//     });
-// }
 
 function renderProjects (projects) {
     return new Promise(function(resolve, reject) {
