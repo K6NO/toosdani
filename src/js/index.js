@@ -8,23 +8,6 @@ const config = {
 };
 firebase.initializeApp(config);
 
-function getProjects (collection) {
-    return new Promise(function(resolve, reject) {
-        collection
-            .get()
-            .then(function(items) {
-                let data = [];
-                items.forEach(function(item) {
-                    data.push(item.data());
-            });
-            resolve(data);
-        })
-        .catch(function (e) {
-            reject(e);
-        });
-    });
-}
-
 function getTopProjects (collection) {
     return new Promise(function(resolve, reject) {
         collection
@@ -136,9 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 $('.carousel-item .carousel-caption').removeClass('move-out');
                 setTimeout(function () {
                     $('.carousel-item.active .carousel-caption').removeClass('move-in').addClass('move-out');
-                }, 4000)
-                // $('.carousel-item.active .carousel-caption').addClass('move-out');
-                // $('.carousel-item.active .carousel-caption').removeClass('move-in');
+                }, 4000);
             });
           }
       )
