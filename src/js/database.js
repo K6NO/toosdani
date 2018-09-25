@@ -1,4 +1,5 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 export function getTopProjects (collection) {
     return new Promise(function(resolve, reject) {

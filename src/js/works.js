@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/firestore';
 import { getProjectsByCategory } from './database.js';
 
 function renderProjects (projects) {

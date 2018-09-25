@@ -1,9 +1,5 @@
 // Firebase App is always required and must be first
 import firebase from "firebase/app";
-import 'firebase/firestore';
-import 'firebase/storage';
-import 'firebase/functions';
-
 import { config } from './config.js';
 import { indexLoaded } from './landing.js';
 import { worksLoaded } from './works.js';

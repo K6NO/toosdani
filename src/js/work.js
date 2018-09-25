@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/firestore';
 import { getProject } from './database.js';
 
 function renderProject (projects) {

@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/firestore';
 import { getTopProjects } from './database.js';
 
 function renderCarousel (projects) {
