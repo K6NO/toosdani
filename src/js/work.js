@@ -1,19 +1,11 @@
-var config = {
-    apiKey: "AIzaSyCINgziSR2GUof4fujxuxVIMe2Iib2fdnw",
-    authDomain: "toosdani1.firebaseapp.com",
-    databaseURL: "https://toosdani1.firebaseio.com",
-    projectId: "toosdani1",
-    storageBucket: "toosdani1.appspot.com",
-    messagingSenderId: "1001590064504"
-};
-firebase.initializeApp(config);
+import firebase from 'firebase';
 
 function getProject (collection, id) {
     return new Promise(function(resolve, reject) {
         collection
             .where(firebase.firestore.FieldPath.documentId(), "==", id)
             .limit(1)
-            .get("id")
+            .get()
             .then(function(items) {
                 let data = [];
                 items.forEach(function(item) {
@@ -58,24 +50,22 @@ function renderProject (projects) {
     })
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-
-    
-    try {
-      const database = firebase.firestore();
-      const firestoreSettings = {timestampsInSnapshots : true};
-      database.settings(firestoreSettings);
-      const collection = database.collection('projects');
-
-      const queryParameter = window.location.search.split('=')[1];
-      console.log(queryParameter);
-      const project = getProject(collection, queryParameter);
-      let htmlObject;
-      renderProject(project).then(function(data) {
-          htmlObject = data;
-          document.getElementById('work').innerHTML = htmlObject;
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  });
+export function workLoaded () {
+    document.addEventListener('DOMContentLoaded', function() {   
+        try {
+          const database = firebase.firestore();
+          const firestoreSettings = {timestampsInSnapshots : true};
+          database.settings(firestoreSettings);
+          const collection = database.collection('projects');
+          const queryParameter = window.location.search.split('=')[1];
+          const project = getProject(collection, queryParameter);
+          let htmlObject;
+          renderProject(project).then(function(data) {
+              htmlObject = data;
+              document.getElementById('work').innerHTML = htmlObject;
+          });
+        } catch (e) {
+          console.error(e);
+        }
+    });
+}

@@ -1,40 +1,30 @@
-var config = {
-    apiKey: "AIzaSyCINgziSR2GUof4fujxuxVIMe2Iib2fdnw",
-    authDomain: "toosdani1.firebaseapp.com",
-    databaseURL: "https://toosdani1.firebaseio.com",
-    projectId: "toosdani1",
-    storageBucket: "toosdani1.appspot.com",
-    messagingSenderId: "1001590064504"
-};
-firebase.initializeApp(config);
+import firebase from 'firebase';
+import { getProjectsByCategory } from './database.js';
 
-
-
-function getProjectsByCategory (collection, category) {
-    return new Promise(function(resolve, reject) {
-        collection
-        .where("category", "==", category)
-        .get("id")
-        .then(function(items) {
-            let data = [];
-            items.forEach(function(item) {
-                let project = item.data();
-                project['id'] = item.id;
-                data.push(project);
-            });
-            console.log(data);
-            data.sort(function(a,b) {
-                if (a.rank > b.rank) return 1;
-                if(b.rank > a.rank) return -1;
-                else return 0;
-            });
-            resolve(data);
-        })
-        .catch(function (e) {
-            reject(e);
-        });
-    });
-}
+// function getProjectsByCategory (collection, category) {
+//     return new Promise(function(resolve, reject) {
+//         collection
+//         .where("category", "==", category)
+//         .get()
+//         .then(function(items) {
+//             let data = [];
+//             items.forEach(function(item) {
+//                 let project = item.data();
+//                 project['id'] = item.id;
+//                 data.push(project);
+//             });
+//             data.sort(function(a,b) {
+//                 if (a.rank > b.rank) return 1;
+//                 if(b.rank > a.rank) return -1;
+//                 else return 0;
+//             });
+//             resolve(data);
+//         })
+//         .catch(function (e) {
+//             reject(e);
+//         });
+//     });
+// }
 
 function renderProjects (projects) {
     return new Promise(function(resolve, reject) {
@@ -79,51 +69,49 @@ function renderProjects (projects) {
             });
     });
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    try {
-      const database = firebase.firestore();
-      const firestoreSettings = {timestampsInSnapshots : true};
-      database.settings(firestoreSettings);
-      
-      // get category from url parameter
-      const collection = database.collection('projects');
-      const queryString = location.search.split('=')[1];
-      const categoryMap = {
-          'product' : 'Product Design',
-          'form' : 'Form Study',
-          'graphic' : 'Graphic Design'
-      }
-      const category = categoryMap[queryString];
-      
-      let projects = getProjectsByCategory(collection, category);
-      let htmlObject;
-      renderProjects(projects).then(function(data) {
-        htmlObject = data;
-        document.getElementById('works').innerHTML = htmlObject;
-        $('.carousel').carousel({
-            ride: true,
-            interval: 10000,
-        });
-
-        // event listener of the category sub-heading clicks
-        document.querySelector('.project-category').addEventListener('click', (e) => {
-            let newCategory = e.target.textContent;
-            projects = getProjectsByCategory(collection, newCategory);
-            renderProjects(projects).then(function(data) {
-                htmlObject = data;
-                document.getElementById('works').innerHTML = htmlObject;
-                $('.carousel').carousel({
-                    ride: true,
-                    interval: 10000,
+export function worksLoaded () {
+    document.addEventListener('DOMContentLoaded', function() {
+        try {
+          const database = firebase.firestore();
+          const firestoreSettings = {timestampsInSnapshots : true};
+          database.settings(firestoreSettings);
+          
+          // get category from url parameter
+          const collection = database.collection('projects');
+          const queryString = location.search.split('=')[1];
+          const categoryMap = {
+              'product' : 'Product Design',
+              'form' : 'Form Study',
+              'graphic' : 'Graphic Design'
+          }
+          const category = categoryMap[queryString];
+          
+          let projects = getProjectsByCategory(collection, category);
+          let htmlObject;
+          renderProjects(projects).then(function(data) {
+            htmlObject = data;
+            document.getElementById('works').innerHTML = htmlObject;
+            $('.carousel').carousel({
+                ride: true,
+                interval: 10000,
+            });
+    
+            // event listener of the category sub-heading clicks
+            document.querySelector('.project-category').addEventListener('click', (e) => {
+                let newCategory = e.target.textContent;
+                projects = getProjectsByCategory(collection, newCategory);
+                renderProjects(projects).then(function(data) {
+                    htmlObject = data;
+                    document.getElementById('works').innerHTML = htmlObject;
+                    $('.carousel').carousel({
+                        ride: true,
+                        interval: 10000,
+                    });
                 });
             });
-        });
-      });
-
-      
-      
-    } catch (e) {
-      console.error(e);
-    }
-  });
+          });
+        } catch (e) {
+          console.error(e);
+        }
+    });
+}
