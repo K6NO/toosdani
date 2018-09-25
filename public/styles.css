@@ -75,20 +75,41 @@ label {
     margin-bottom: 2rem;
 }
 .carousel .carousel-item img {
-    
     min-width: auto;
 }
 
+/* classes to animate text on front page slider */
 .carousel-caption {
     bottom: 0;
     top: 43%;
+    margin-left: 100%;
 }
+
+.move-out {
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+    margin-left: -200% !important;
+}
+.move-in {
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+    margin-left: 0 !important;
+}
+
 .carousel-title {
     font-size: 2.4rem;
     font-weight: 400;
     color: #ededed;
     letter-spacing: 10.5px;
+    white-space: nowrap;
 }
+
 .carousel-title > a {
     text-decoration: none;
 }
@@ -317,3 +338,23 @@ label {
         overflow:hidden; 
     }
 }
+
+
+/* Front page carousel text animation */
+
+@-webkit-keyframes slideout {
+    0%   { translateX: 100; }
+    100%   { translateX: 100; }
+  }
+  @-moz-keyframes slideout {
+    0%   { translateX: 100; }
+    100%   { translateX: 100; }
+  }
+  @-o-keyframes slideout {
+    0%   { translateX: 100; }
+    100%   { translateX: 100; }
+  }
+  @keyframes slideout {
+    0%   { translateX: 100; }
+    100%   { translateX: 100; }
+  }

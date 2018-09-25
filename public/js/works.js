@@ -8,6 +8,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+
+
 function getProjectsByCategory (collection, category) {
     return new Promise(function(resolve, reject) {
         collection
@@ -19,8 +21,14 @@ function getProjectsByCategory (collection, category) {
                 let project = item.data();
                 project['id'] = item.id;
                 data.push(project);
-        });
-        resolve(data);
+            });
+            console.log(data);
+            data.sort(function(a,b) {
+                if (a.rank > b.rank) return 1;
+                if(b.rank > a.rank) return -1;
+                else return 0;
+            });
+            resolve(data);
         })
         .catch(function (e) {
             reject(e);

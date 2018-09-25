@@ -85,14 +85,43 @@ function renderCarousel (projects) {
     })
 }
 
+function sendEmail (e, name, senderEmail, message) {
+    e.preventDefault();    
+    if(!name.value) {
+        alert('Please add your name.')
+    } else if (!senderEmail.value) {
+        alert('Please add your email.')
+    } else if (!message.value) {
+        alert('Please write a message.')
+    } else {
+        $.ajax({
+            url: ' https://us-central1-toosdani.cloudfunctions.net/sendMail',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                "name" : name.value,
+                "email" : senderEmail.value,
+                "message" : message.value,
+            }
+            })
+        .done(function(data) {
+            alert(data.message);
+            console.log(data);
+        })
+        .fail(function(error) {
+            alert('Error. Message not sent.');
+            console.log(error);
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     try {
       const database = firebase.firestore();
       const firestoreSettings = {timestampsInSnapshots : true};
       database.settings(firestoreSettings);
       const collection = database.collection('projects');
-      
-      
+    
       // render carousel
       let carouselHTML;
       const topProjects = getTopProjects(collection);
@@ -100,51 +129,36 @@ document.addEventListener('DOMContentLoaded', function() {
           function(data) {
               carouselHTML = data;
               document.getElementById('renderCarousel').innerHTML = carouselHTML;
+
+              // add event listener to carousel slid event
+            $('#carouselId').on('slid.bs.carousel', function () {
+                $('.carousel-item.active .carousel-caption').addClass('move-in')
+                $('.carousel-item .carousel-caption').removeClass('move-out');
+                setTimeout(function () {
+                    $('.carousel-item.active .carousel-caption').removeClass('move-in').addClass('move-out');
+                }, 4000)
+                // $('.carousel-item.active .carousel-caption').addClass('move-out');
+                // $('.carousel-item.active .carousel-caption').removeClass('move-in');
+            });
           }
       )
       .catch(function(e) {
         console.log('ouch in carousel rendering');
         console.log(e);
       });
-      ;
     
     // handle contact form
     const form = document.querySelector('#contactForm');
     const name = form.elements['name'];
     const senderEmail = form.elements['email'];
     const message = form.elements['message'];
-    form.elements['name'].value = '';
-    form.elements['email'].value = '';
-    form.elements['message'].value = '';
+
 
     form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if(!name.value) {
-            alert('Please add your name.')
-        } else if (!senderEmail.value) {
-            alert('Please add your email.')
-        } else if (!message.value) {
-            alert('Please write a message.')
-        } else {
-            $.ajax({
-                url: ' https://us-central1-toosdani.cloudfunctions.net/sendMail',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    "name" : name.value,
-                    "email" : senderEmail.value,
-                    "message" : message.value,
-                }
-                })
-            .done(function(data) {
-                alert(data.message);
-                console.log(data);
-            })
-            .fail(function(error) {
-                alert('Error. Message not sent.');
-                console.log(error);
-            });
-        }
+        form.elements['name'].value = '';
+        form.elements['email'].value = '';
+        form.elements['message'].value = '';
+        sendEmail(e, name, senderEmail, message);
     });
     } catch (e) {
       console.error(e);
