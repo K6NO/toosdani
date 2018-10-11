@@ -27,7 +27,7 @@ function renderCarousel (projects) {
 }
 
 function sendEmail (e, name, senderEmail, message) {
-    e.preventDefault();    
+    e.preventDefault();
     if(!name.value) {
         alert('Please add your name.')
     } else if (!senderEmail.value) {
@@ -47,10 +47,13 @@ function sendEmail (e, name, senderEmail, message) {
             })
         .done(function(data) {
             alert(data.message);
-            console.log(data);
+            const form = document.querySelector('#contactForm');
+            form.elements['name'].value = '';
+            form.elements['email'].value = '';
+            form.elements['message'].value = '';
         })
         .fail(function(error) {
-            alert('Error. Message not sent.');
+            alert('Error. Message not sent. Please try again.');
             console.log(error);
         });
     }
@@ -94,9 +97,6 @@ export function indexLoaded () {
     
     
         form.addEventListener('submit', function(e) {
-            form.elements['name'].value = '';
-            form.elements['email'].value = '';
-            form.elements['message'].value = '';
             sendEmail(e, name, senderEmail, message);
         });
         } catch (e) {
