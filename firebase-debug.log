@@ -1,0 +1,40 @@
+[debug] [2018-10-11T08:27:53.648Z] ----------------------------------------------------------------------
+[debug] [2018-10-11T08:27:53.652Z] Command:       /Users/Keno/.nvm/versions/node/v6.3.1/bin/node /Users/Keno/.nvm/versions/node/v6.3.1/bin/firebase serve
+[debug] [2018-10-11T08:27:53.652Z] CLI Version:   4.2.1
+[debug] [2018-10-11T08:27:53.653Z] Platform:      darwin
+[debug] [2018-10-11T08:27:53.653Z] Node Version:  v6.3.1
+[debug] [2018-10-11T08:27:53.654Z] Time:          Thu Oct 11 2018 10:27:53 GMT+0200 (CEST)
+[debug] [2018-10-11T08:27:53.654Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-11T08:27:53.733Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-11T08:27:53.734Z] > authorizing via signed-in user
+[debug] [2018-10-11T08:27:53.736Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-10-11T08:27:53.737Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2018-10-11T08:27:53.942Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-11T08:27:53.952Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/toosdani1  
+ 
+[debug] [2018-10-11T08:27:55.142Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-11T08:27:55.145Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/toosdani1  
+ 
+[debug] [2018-10-11T08:27:56.112Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Keno/Documents/Work/Progi/ToosDani'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-10-11T08:27:57.535Z] Fetching environment
+[debug] [2018-10-11T08:27:57.538Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1001590064504:getServerAppConfig  
+ 
+[debug] [2018-10-11T08:27:57.538Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1001590064504/clients/_:getWebAppConfig  
+ 
+[debug] [2018-10-11T08:27:57.830Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-11T08:27:57.831Z] Starting @google-cloud/functions-emulator
+[warn] ⚠  functions: Error from emulator. Error: Emulator crashed! Check the log file...
+[debug] [2018-10-11T08:27:57.958Z] Error: Emulator crashed! Check the log file...
+    at ChildProcess.child.on (/Users/Keno/.nvm/versions/node/v6.3.1/lib/node_modules/firebase-tools/node_modules/@google-cloud/functions-emulator/src/cli/controller.js:650:24)
+    at emitTwo (events.js:106:13)
+    at ChildProcess.emit (events.js:191:7)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:204:12)
+[debug] [2018-10-11T08:27:58.105Z] <<< HTTP RESPONSE 200
+[info] i  hosting[toosdani1]: Serving hosting files from: src
+[info] ✔  hosting[toosdani1]: Local server: http://localhost:5000
