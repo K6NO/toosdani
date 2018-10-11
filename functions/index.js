@@ -30,8 +30,12 @@ exports.sendMail = functions.https.onRequest((req, res) => {
 async function sendEmail(name, email, message) {
     const mailOptions= {
         to: 'nyerckoma@gmail.com',
-        text: `${name} from ${email} has sent a message to you: 
-        ${message}`,
+        text: `${name} from ${email} has sent a message to you: ${message}`,
+        html: `
+            <h2>Új üzeneted érkezett a DanielToos.com honlapról</h2>
+            <p>Az üzenetet ${name} küldte a ${email} email címről.</p>
+            <p>Az üzenet tartalma:</p><br/>
+            <p>${message}</p>`,
         subject: 'New message from DanielToos.com',
     }
     await transporter.sendMail(mailOptions);
