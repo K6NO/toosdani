@@ -36,7 +36,7 @@ function sendEmail (e, name, senderEmail, message) {
         alert('Please write a message.')
     } else {
         $.ajax({
-            url: ' https://us-central1-toosdani.cloudfunctions.net/sendMail',
+            url: 'https://us-central1-toosdani1.cloudfunctions.net/sendEmail',
             type: 'POST',
             dataType: 'json',
             data: {

@@ -13,10 +13,11 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-exports.sendMail = functions.https.onRequest((req, res) => {
+exports.sendEmail = functions.https.onRequest((req, res) => {
     if(req.method === 'PUT') {
         return res.status(403).send('Forbidden');
     }
+
     const name = req.body.name;
     const email = req.body.email;
     const message = req.body.message;

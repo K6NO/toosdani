@@ -69,7 +69,7 @@ export function worksLoaded () {
             document.getElementById('works').innerHTML = htmlObject;
             $('.carousel').carousel({
                 ride: true,
-                interval: 10000,
+                interval: 5000,
             });
     
             // event listener of the category sub-heading clicks
@@ -81,7 +81,7 @@ export function worksLoaded () {
                     document.getElementById('works').innerHTML = htmlObject;
                     $('.carousel').carousel({
                         ride: true,
-                        interval: 10000,
+                        interval: 5000,
                     });
                 });
             });

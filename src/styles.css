@@ -181,6 +181,7 @@ label {
     margin-bottom: 2rem;
 }
 .p-text {
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 1.2rem;
     letter-spacing: 1.5px;
     padding: 1rem 0;
@@ -235,6 +236,9 @@ label {
 }
 .form-control:focus { 
     border: 1px solid #eaeaea;
+}
+#emailHelp {
+    font-size: 1.2rem;
 }
 /* works.html */
 .dropdown {
