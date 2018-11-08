@@ -34,7 +34,9 @@ function renderProjects (projects) {
                         <div class="col-12 col-md-4">
                             <a href="work.html?project=${project.id}"><h5 class="project-header">${project.title}</h5></a>
                             <h6 class="project-category">${project.category}</h6>
-                            <p class="p-text">${project.description}</p>
+                            ${window.innerWidth < 540 ? (
+                                `<p class="p-text">${project.description}</p>`
+                            ) : ''}
                         </div>
                     </div>`
                 }).join('')}`;
@@ -58,7 +60,8 @@ export function worksLoaded () {
           const categoryMap = {
               'product' : 'Product Design',
               'form' : 'Form Study',
-              'graphic' : 'Graphic Design'
+              'graphic' : 'Graphic Design',
+              'kabin' : 'Kabin',
           }
           const category = categoryMap[queryString];
           
