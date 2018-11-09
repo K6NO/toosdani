@@ -9,7 +9,9 @@ export function getTopProjects (collection) {
             .then(function(items) {
                 let data = [];
                 items.forEach(function(item) {
-                    data.push(item.data());
+                    let project = item.data();
+                    project['id'] = item.id;
+                    data.push(project);
             });
             resolve(data);
         })

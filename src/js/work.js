@@ -3,22 +3,22 @@ import 'firebase/firestore';
 import { getProject } from './database.js';
 
 const categoryMap = {
-    'product' : 'Product Design',
-    'form' : 'Form Study',
-    'graphic' : 'Graphic Design',
-    'kabin' : 'Kabin',
+    'Product Design' : 'product',
+    'Form Study' : 'form',
+    'Graphic Design' : 'graphic',
+    'Kabin' : 'kabin',
 }
 
 function renderProject (projects) {
     return new Promise(function(resolve, reject) {
         projects.then(function(data) {
-            let categoryNavigation = categoryMap[project.category];
+            
             let htmlObject = 
             `${data.map((project) => `
                 <div class="row">
                     <div class="col-12 col-md-8 order-2 order-md-1">
                         ${project.images.map(function(image) {
-                            return `<img class="img-fluid img-profile mb-4" src="${image}" alt="${project.title}" />`
+                            return `<img class="img-fluid mb-4" src="${image}" alt="${project.title}" />`
                         }).join('')}
                     </div>
                     <div class="embed-container col-12 col-md-8 order-3 order-md-3">
@@ -29,7 +29,7 @@ function renderProject (projects) {
                     <div class="col-12 col-md-4 order-1 order-md-2">
                         <h5 class="project-header">${project.title}</h5>
                         <h6 class="project-category">
-                            <a href="/works.html?category=${categoryNavigation}" alt="category">${project.category}</a></h6>
+                            <a href="/works.html?category=${categoryMap[project.category]}" alt="category" class="project-category">${project.category}</a></h6>
                         <p class="p-text">${project.description}</p>
                     </div>
                 </div>`

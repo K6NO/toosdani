@@ -7,11 +7,12 @@ function renderCarousel (projects) {
         projects.then(function(data) {
             let htmlObject = `
                     ${data.map(function(item, index) {
+                        console.log(item);
                     return `
                     <div class="carousel-item ${index === 0 ? 'active' : ''}">
                         <img class="d-block w-100" src="${item.images[0]}" alt="${item.title}" />
                         <div class="carousel-caption d-block">
-                            <h2 class="carousel-title"><a class="${item.dark ? 'title-dark' : 'title-light'}" href="/work.html?project=${item.title}">${item.title}</a></h2>
+                            <h2 class="carousel-title"><a class="${item.dark ? 'title-dark' : 'title-light'}" href="/work.html?project=${item.id}">${item.title}</a></h2>
                         </div>
                     </div>
                     `

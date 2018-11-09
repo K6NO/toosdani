@@ -76,6 +76,7 @@ label {
 .carousel {
     margin-bottom: 20px;
     margin-bottom: 2rem;
+    min-height: 80vh;
 }
 .carousel .carousel-item img {
     min-width: auto;
@@ -319,7 +320,7 @@ label {
     }
 }
 
-@media (min-width: 992px) {
+@media only screen and (min-width: 992px) {
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 2rem;
         padding-left: .5rem;
@@ -328,7 +329,7 @@ label {
         padding-top: .4rem;
     }
 }
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
     .embed-container {
         position:relative;
         padding-bottom:43%;
@@ -337,11 +338,14 @@ label {
         height:0;
         overflow:hidden; 
     }
-    .carousel .carousel-item img {
-        min-height: 220px;
+    .carousel {
+        min-height: 40vh;
     }
     .img-profile {
-        max-width: 50%!important;
+        max-width: 30%!important;
+    }
+    .navbar-brand {
+        max-width: 70%;
     }
     
 }
