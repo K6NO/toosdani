@@ -7,7 +7,6 @@ function renderCarousel (projects) {
         projects.then(function(data) {
             let htmlObject = `
                     ${data.map(function(item, index) {
-                        console.log(item);
                     return `
                     <div class="carousel-item ${index === 0 ? 'active' : ''}">
                         <img class="d-block w-100" src="${item.images[0]}" alt="${item.title}" />
@@ -20,7 +19,7 @@ function renderCarousel (projects) {
                 `; 
             resolve(htmlObject);
         }).catch(function(e) {
-            console.log('ouch renderCarousel');
+            
             reject(e);
         });
     })
@@ -54,7 +53,7 @@ function sendEmail (e, name, senderEmail, message) {
         })
         .fail(function(error) {
             alert('Error. Message not sent. Please try again.');
-            console.log(error);
+            console.error(error);
         });
     }
 }
@@ -85,8 +84,8 @@ export function indexLoaded () {
               }
           )
           .catch(function(e) {
-            console.log('ouch in carousel rendering');
-            console.log(e);
+            console.error(e);
+            
           });
         
         // handle contact form

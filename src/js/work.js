@@ -1,13 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { getProject } from './database.js';
-
-const categoryMap = {
-    'Product Design' : 'product',
-    'Form Study' : 'form',
-    'Graphic Design' : 'graphic',
-    'Kabin' : 'kabin',
-}
+import { categoryMap } from './constants';
 
 function renderProject (projects) {
     return new Promise(function(resolve, reject) {
@@ -26,17 +20,17 @@ function renderProject (projects) {
                             return `<iframe src='${video}' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>`
                         }).join('') : ''}
                     </div>
+                    
                     <div class="col-12 col-md-4 order-1 order-md-2">
                         <h5 class="project-header">${project.title}</h5>
                         <h6 class="project-category">
-                            <a href="/works.html?category=${categoryMap[project.category]}" alt="category" class="project-category">${project.category}</a></h6>
+                            <a href="/works.html?category=${Object.keys(categoryMap).find(key => categoryMap[key] === project.category)}" alt="category" class="project-category">${project.category}</a></h6>
                         <p class="p-text">${project.description}</p>
                     </div>
                 </div>`
                 ).join('')}`;
                 resolve(htmlObject);
             }).catch(function(e) {
-                console.log('ouch individual renderProject');
                 reject(e);
             });
     })
@@ -51,6 +45,7 @@ export function workLoaded () {
           const collection = database.collection('projects');
           const queryParameter = window.location.search.split('=')[1];
           const project = getProject(collection, queryParameter);
+          
           let htmlObject;
           renderProject(project).then(function(data) {
               htmlObject = data;

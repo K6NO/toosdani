@@ -4,8 +4,10 @@ import { config } from './config.js';
 import { indexLoaded } from './landing.js';
 import { worksLoaded } from './works.js';
 import { workLoaded } from './work.js';
+import { renderNavigation } from './navigation.js';
 firebase.initializeApp(config);
 
+renderNavigation();
 if(window.location.pathname.indexOf('works.html') !== -1 ) {
     // show works page
     worksLoaded();
